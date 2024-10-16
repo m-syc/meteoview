@@ -1,0 +1,3 @@
+[submodule "libs/C_Cpp_lib_template"]
+	path = libs/C_Cpp_lib_template
+	url = https://github.com/m-syc/C_Cpp_lib_template.git
