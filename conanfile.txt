@@ -1,0 +1,12 @@
+[requires]
+fmt/9.1.0
+giflib/5.2.1
+
+[generators]
+CMakeToolchain
+CMakeDeps
+
+[options]
+boost/*:shared=False
+fmt/*:shared=False
+giflib/*:shared=False

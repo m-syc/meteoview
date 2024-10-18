@@ -1,9 +1,10 @@
 #include <iostream>
-#include "lib.h"
+#include <fmt/core.h>
 
 int main()
 {
 	std::cout << "Hello world!" << std::endl;
-	foo();
+	fmt::print("Hello from fmt\n");
+
 	return 0;
 }
