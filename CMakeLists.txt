@@ -5,9 +5,13 @@ set(FULL_PROJECT_NAME
     meteoview
 )
 
-set(CMAKE_CXX_STANDARD 14)
+# Add this to the top of your CMakeLists.txt
+include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
+
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(SOURCE_DIR
     src
@@ -31,10 +35,13 @@ project(${FULL_PROJECT_NAME} VERSION 1.0.0)
 add_executable(${PROJECT_NAME} ${MAIN_SOURCE})
 target_include_directories(${PROJECT_NAME} INTERFACE src)
 
+add_subdirectory("libs/ContentProvider")
 find_package(fmt REQUIRED)
 find_package(GIF REQUIRED)
-target_link_libraries(${FULL_PROJECT_NAME} fmt::fmt)
-target_link_libraries(${FULL_PROJECT_NAME} GIF::GIF)
+find_package(restbed REQUIRED)
+
+target_link_libraries(${FULL_PROJECT_NAME} fmt::fmt GIF::GIF restbed::restbed)
+target_link_libraries(${FULL_PROJECT_NAME} ContentProvider)
 
 # foreach(LIBRARY ${TEMP_LIBRARIES})
 #     add_subdirectory("libs/${LIBRARY}")

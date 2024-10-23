@@ -1,12 +1,12 @@
 [requires]
 fmt/9.1.0
 giflib/5.2.1
+restbed/4.8
 
 [generators]
-CMakeToolchain
 CMakeDeps
+CMakeToolchain
 
 [options]
-boost/*:shared=False
-fmt/*:shared=False
-giflib/*:shared=False
+fmt/*:shared=True
+giflib/*:shared=True
