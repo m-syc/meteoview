@@ -8,6 +8,7 @@ ARG PROJECT_PATH
 RUN apt-get update && apt-get install -y \
     cmake \
     python3-pip \
+    gdb \
     make \
     && pip3 install conan \
     && apt-get clean
