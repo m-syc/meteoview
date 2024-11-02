@@ -36,12 +36,13 @@ add_executable(${PROJECT_NAME} ${MAIN_SOURCE})
 target_include_directories(${PROJECT_NAME} INTERFACE src)
 
 add_subdirectory("libs/ContentProvider")
+add_subdirectory("libs/ConfigCore")
 find_package(fmt REQUIRED)
 find_package(GIF REQUIRED)
 find_package(restbed REQUIRED)
 
 target_link_libraries(${FULL_PROJECT_NAME} fmt::fmt GIF::GIF restbed::restbed)
-target_link_libraries(${FULL_PROJECT_NAME} ContentProvider)
+target_link_libraries(${FULL_PROJECT_NAME} ContentProvider ConfigCore)
 
 # foreach(LIBRARY ${TEMP_LIBRARIES})
 #     add_subdirectory("libs/${LIBRARY}")

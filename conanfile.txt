@@ -2,11 +2,12 @@
 fmt/9.1.0
 giflib/5.2.1
 restbed/4.8
+nlohmann_json/3.11.3
 
 [generators]
 CMakeDeps
 CMakeToolchain
 
 [options]
-fmt/*:shared=True
-giflib/*:shared=True
+fmt/*:shared=False
+giflib/*:shared=False

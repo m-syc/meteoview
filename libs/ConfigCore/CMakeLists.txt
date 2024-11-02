@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.18)
 cmake_policy(SET CMP0048 NEW)
 set(LIB_NAME
-    ContentProvider
+    ConfigCore
 )
 
 # Add this to the top of your CMakeLists.txt
@@ -19,9 +19,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(SOURCES ContentProvider.hpp ContentProviderFactory.hpp
-    ChmiProvider.hpp src/ChmiProvider.cpp
-    ModellzentraleProvider.hpp src/ModellzentraleProvider.cpp)
+set(SOURCES CfgReader.hpp src/CfgReader.cpp
+            BasicCfg.hpp src/BasicCfg.cpp
+            MeteoService.hpp src/MeteoService.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -35,6 +35,7 @@ include_directories(${GTEST_INCLUDE_DIRS})
 add_library(${PROJECT_NAME} ${SOURCES})
 
 find_package(fmt REQUIRED)
+find_package(nlohmann_json REQUIRED)
 find_package(restbed)
-target_link_libraries(${PROJECT_NAME} ConfigCore fmt::fmt restbed::restbed)
+target_link_libraries(${PROJECT_NAME} fmt::fmt nlohmann_json::nlohmann_json)
 target_include_directories(${PROJECT_NAME} PUBLIC ./)
