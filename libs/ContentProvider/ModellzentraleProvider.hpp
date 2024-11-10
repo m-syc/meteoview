@@ -10,11 +10,10 @@ public:
     ~ModellzentraleProvider();
 
     void fetchContent() noexcept;
-    ModellzentraleProvider(ModellzentraleProvider& instance) = delete;
-    static std::shared_ptr<ModellzentraleProvider> instance(std::shared_ptr<BasicCfg> cfg);
-private:
     ModellzentraleProvider();
-    ModellzentraleProvider(std::shared_ptr<ModellzentraleCfg> cfg);
+    ModellzentraleProvider(const ModellzentraleCfg &cfg);
+    ModellzentraleProvider(ModellzentraleProvider& instance) = delete;
+private:
 };
 
 #endif /* _MODELLZENTRALE_PROVIDER */

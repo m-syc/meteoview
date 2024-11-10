@@ -4,7 +4,6 @@
 #include "fmt/core.h"
 #include <nlohmann/json.hpp>
 
-using json = nlohmann::json;
 
 class BasicCfg {
 public:
@@ -12,7 +11,7 @@ public:
 
     virtual ~BasicCfg() = default;
 
-private:
+protected:
     unsigned int imgNum;
     bool doProcess;
 };
@@ -26,8 +25,10 @@ public:
     };
 
     ChmiCfg();
-    ChmiCfg(json j);
     ~ChmiCfg() = default;
+
+    friend void to_json(nlohmann::json &k, const ChmiCfg &cfg) noexcept;
+    friend void from_json(const nlohmann::json& j, ChmiCfg &cfg) noexcept;
 
 private:
     std::vector<Products> products;
@@ -42,8 +43,11 @@ public:
     };
 
     ModellzentraleCfg();
-    ModellzentraleCfg(json j);
+    // ModellzentraleCfg(json j);
     ~ModellzentraleCfg() = default;
+
+    friend void to_json(nlohmann::json &k, const ModellzentraleCfg &cfg) noexcept;
+    friend void from_json(const nlohmann::json& j, ModellzentraleCfg &cfg) noexcept;
 private:
 };
 

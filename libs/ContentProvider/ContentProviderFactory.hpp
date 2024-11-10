@@ -3,19 +3,21 @@
 
 #include <map>
 #include <memory>
-#include "ChmiProvider.hpp"
-#include "ModellzentraleProvider.hpp"
+#include <functional>
+#include <nlohmann/json.hpp>
+#include "ContentProvider.hpp"
 
 class ContentProviderFactory {
 public:
-    static std::map<MeteoService, std::shared_ptr<ContentProvider>> createProviders() {
-        CfgReader cfg{"./config.json"};
-        auto chmi = ChmiProvider::instance(cfg.get(MeteoService::Chmi));
-        auto mdlzntrl = ModellzentraleProvider::instance(cfg.get(MeteoService::Modellzentrale));
+    static std::vector<std::shared_ptr<ContentProvider>> createProviders();
 
-        return {{MeteoService::Modellzentrale, mdlzntrl},
-                {MeteoService::Chmi, chmi}};
-    }
+private:
+
+    static std::shared_ptr<ContentProvider> makeChmiProvier(const nlohmann::json& j_cfg);
+    static std::shared_ptr<ContentProvider> makeModellzentraleProvider(const nlohmann::json& j_cfg);
+    static std::shared_ptr<ContentProvider> createProvider(const std::string &serviceName, const nlohmann::json& j_cfg);
 };
+
+
 
 #endif /* _CONTENT_PROVIDER_FACTORY */

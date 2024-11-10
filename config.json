@@ -1,44 +1,31 @@
 {
     "CreateGif": true,
-    "services": [
-        {
-            "name": "Flymet",
-            "properties": {
-                "process": false,
-                "imgNumber": 3
-            }
+    "debugLog": false,
+    "services": {
+        "Flymet": {
+            "process": false
         },
-        {
-            "name": "Chmi",
-            "properties":
-            {
-                "process": true,
-                "imgNumber": 3,
-                "products": [
-                    "IR",
-                    "IR BT",
-                    "Airmass"
-                ]
-            }
+        "Chmi": {
+            "process": true,
+            "imgNumber": 3,
+            "products": [
+                "IR",
+                "IR BT",
+                "Airmass"
+            ]
         },
-        {
-            "name": "Modellzentrale",
-            "properties":{
-                "process": true,
-                "imgNumber": 10,
-                "altitude": [
-                    900,
-                    750,
-                    500
-                ]
-            }
+        "Modellzentrale": {
+            "process": true,
+            "imgNumber": 10,
+            "altitude": [
+                900,
+                750,
+                500
+            ]
         },
-        {
-            "name": "Wetter.de",
-            "properties": {
-                "process": false,
-                "imgNumber": 3
-            }
+        "Wetter.de": {
+            "process": false,
+            "imgNumber": 3
         }
-    ]
+    }
 }

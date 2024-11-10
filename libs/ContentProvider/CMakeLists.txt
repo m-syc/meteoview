@@ -19,7 +19,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(SOURCES ContentProvider.hpp ContentProviderFactory.hpp
+set(SOURCES ContentProvider.hpp
+ContentProviderFactory.hpp src/ContentProviderFactory.cpp
     ChmiProvider.hpp src/ChmiProvider.cpp
     ModellzentraleProvider.hpp src/ModellzentraleProvider.cpp)
 

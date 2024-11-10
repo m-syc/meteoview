@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "ContentProvider.hpp"
+#include <nlohmann/json.hpp>
 // #include "CfgReader.hpp"
 
 class ChmiProvider : public ContentProvider {
@@ -10,12 +11,10 @@ public:
     ~ChmiProvider();
 
     void fetchContent();
-    ChmiProvider(ChmiProvider& instance) = delete;
-    static std::shared_ptr<ChmiProvider> instance(std::shared_ptr<BasicCfg> cfg);
-private:
     ChmiProvider();
-    ChmiProvider(std::shared_ptr<ChmiCfg> cfg);
-    std::shared_ptr<BasicCfg> cfg;
+    ChmiProvider(const ChmiCfg &cfg);
+    ChmiProvider(ChmiProvider& instance) = delete;
+private:
 };
 
 #endif /* _CHMI_PROVIDER */

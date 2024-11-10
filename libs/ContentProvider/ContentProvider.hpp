@@ -4,12 +4,14 @@
 #include "CfgReader.hpp"
 
 class ContentProvider {
+    friend class ContentProviderFactory;
 public:
     ContentProvider() {};
     virtual ~ContentProvider() {};
     virtual void fetchContent() = 0;
-    ContentProvider& instance(CfgReader &cfg) = delete;
 private:
+    ContentProvider& instance(CfgReader &cfg) = delete;
+    std::string name = "";
 };
 
 #endif /* _CONTENT_PROVIDER */
