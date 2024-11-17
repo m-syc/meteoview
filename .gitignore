@@ -13,6 +13,9 @@ conan_cache*
 # Dump file
 *.stackdump
 
+# Media directory
+media/
+
 # Folder config file
 [Dd]esktop.ini
 

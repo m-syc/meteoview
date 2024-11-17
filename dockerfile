@@ -23,7 +23,8 @@ WORKDIR ${PROJECT_PATH}
 
 # Ensure Conan profile is created, then modify it
 RUN conan profile detect || true \
-    && test -f ~/.conan2/profiles/default && sed -i 's|libstdc++$|libstdc++11|' ~/.conan2/profiles/default || echo "Conan profile not found, skipping sed command"
+    && test -f ~/.conan2/profiles/default && sed -i 's|^settings.compiler.libcxx=.*|settings.compiler.libcxx=libstdc++11|' ~/.conan2/profiles/default \
+    && echo "settings.build_type=Debug" >> ~/.conan2/profiles/default || echo "Conan profile not found, skipping sed commands"
 
 CMD ["/bin/bash"]
 

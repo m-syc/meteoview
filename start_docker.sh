@@ -25,6 +25,7 @@ else
         echo "Creating and starting new container $CONTAINER_NAME..."
         docker run -d \
             --name $CONTAINER_NAME \
+            -e BUILD_TYPE=${BUILD_TYPE:-Debug} \
             -v $PROJECT_DIR:${PROJECT_DIR} \
             -v $CONAN_CACHE_DIR:/root/.conan2 \
             -w ${PROJECT_DIR} \
