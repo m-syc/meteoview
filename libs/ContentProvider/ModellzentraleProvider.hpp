@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "ContentProvider.hpp"
-#include "CfgReader.hpp"
+#include "ModellzentraleCfg.hpp"
 
 class ModellzentraleProvider : public ContentProvider {
 public:

@@ -4,7 +4,7 @@
 #include <memory>
 #include "ContentProvider.hpp"
 #include <nlohmann/json.hpp>
-// #include "CfgReader.hpp"
+#include "ChmiCfg.hpp"
 
 class ChmiProvider : public ContentProvider {
 public:
@@ -14,7 +14,14 @@ public:
     ChmiProvider();
     ChmiProvider(const ChmiCfg &cfg);
     ChmiProvider(ChmiProvider& instance) = delete;
+
+    void reloadConfig(const ChmiCfg &cfg);
+
 private:
+
+    ChmiCfg cfg;
 };
+
+
 
 #endif /* _CHMI_PROVIDER */

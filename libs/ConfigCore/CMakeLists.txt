@@ -21,6 +21,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(SOURCES CfgReader.hpp src/CfgReader.cpp
             BasicCfg.hpp src/BasicCfg.cpp
+            ChmiCfg.hpp src/ChmiCfg.cpp
+            ModellzentraleCfg.hpp src/ModellzentraleCfg.cpp
+            Sat24Cfg.hpp src/Sat24Cfg.cpp
             MeteoService.hpp src/MeteoService.cpp)
 
 include(FetchContent)
@@ -36,6 +39,5 @@ add_library(${PROJECT_NAME} ${SOURCES})
 
 find_package(fmt REQUIRED)
 find_package(nlohmann_json REQUIRED)
-find_package(restbed)
 target_link_libraries(${PROJECT_NAME} fmt::fmt nlohmann_json::nlohmann_json)
 target_include_directories(${PROJECT_NAME} PUBLIC ./)

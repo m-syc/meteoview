@@ -1,8 +1,12 @@
 #include "ContentProviderFactory.hpp"
+#include "Sat24Provider.hpp"
 #include "ChmiProvider.hpp"
 #include "ModellzentraleProvider.hpp"
 #include <iostream>
 #include <fstream>
+#include <map>
+#include <memory>
+#include <functional>
 #include <fmt/core.h>
 #include <nlohmann/json.hpp>
 
@@ -15,7 +19,7 @@ std::vector<std::shared_ptr<ContentProvider>> ContentProviderFactory::createProv
     std::ifstream f{cfgPath};
     json config = json::parse(f);
 
-    for (const auto& [service_name, properties] : config["services"].items()) {
+    for(const auto& [service_name, properties] : config["services"].items()) {
         if(properties["process"]) {
             auto provider = ContentProviderFactory::createProvider(service_name, properties);
             if(provider != nullptr) {
@@ -25,6 +29,13 @@ std::vector<std::shared_ptr<ContentProvider>> ContentProviderFactory::createProv
     }
 
     return providers;
+}
+
+std::shared_ptr<ContentProvider> ContentProviderFactory::makeSat24Provier(const json& j_cfg) {
+    // Config deserialized from json
+    const Sat24Cfg cfg = j_cfg.get<Sat24Cfg>();
+
+    return std::shared_ptr<Sat24Provider>(new Sat24Provider{cfg});
 }
 
 std::shared_ptr<ContentProvider> ContentProviderFactory::makeChmiProvier(const json& j_cfg) {
@@ -46,6 +57,7 @@ std::shared_ptr<ContentProvider> ContentProviderFactory::createProvider(const st
     using ServiceRegistry = std::map<std::string, std::function<std::shared_ptr<ContentProvider>(const nlohmann::json& cfg)>>;
 
     static const ServiceRegistry serviceMap = {
+        {"sat24", &ContentProviderFactory::makeSat24Provier},
         {"Chmi", &ContentProviderFactory::makeChmiProvier},
         {"Modellzentrale", &ContentProviderFactory::makeModellzentraleProvider},
     };

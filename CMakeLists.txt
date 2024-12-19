@@ -13,10 +13,6 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(SOURCE_DIR
-    src
-)
-
 set(MAIN_SOURCE
     src/main.cpp
 )
@@ -37,12 +33,12 @@ target_include_directories(${PROJECT_NAME} INTERFACE src)
 
 add_subdirectory("libs/ContentProvider")
 add_subdirectory("libs/ConfigCore")
+add_subdirectory("libs/ImageManager")
 find_package(fmt REQUIRED)
 find_package(GIF REQUIRED)
-find_package(restbed REQUIRED)
 
-target_link_libraries(${FULL_PROJECT_NAME} fmt::fmt GIF::GIF restbed::restbed)
-target_link_libraries(${FULL_PROJECT_NAME} ContentProvider ConfigCore)
+target_link_libraries(${FULL_PROJECT_NAME} fmt::fmt GIF::GIF)
+target_link_libraries(${FULL_PROJECT_NAME} ContentProvider ConfigCore ImageManager)
 
 # foreach(LIBRARY ${TEMP_LIBRARIES})
 #     add_subdirectory("libs/${LIBRARY}")

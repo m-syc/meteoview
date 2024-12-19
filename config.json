@@ -2,6 +2,19 @@
     "CreateGif": true,
     "debugLog": false,
     "services": {
+        "IMGW": {
+            "process": false
+        },
+        "sat24": {
+            "process":true,
+            "imgNumber": 0,
+            "products": [
+                "Visible",
+                "Infrared",
+                "nightmicrophysics",
+                "Radar and satelite"
+            ]
+        },
         "Flymet": {
             "process": false
         },
@@ -9,18 +22,29 @@
             "process": true,
             "imgNumber": 3,
             "products": [
+                "hehe",
                 "IR",
                 "IR BT",
-                "Airmass"
-            ]
+                "invalid",
+                "VIS-IR",
+                "WV",
+                "Airmass",
+                "24h-M",
+                "night-M"
+            ],
+            "area": "ce",
+            "timedelta": 30
         },
         "Modellzentrale": {
             "process": true,
             "imgNumber": 10,
             "altitude": [
+                901,
                 900,
                 750,
-                500
+                500,
+                1,
+                "xD"
             ]
         },
         "Wetter.de": {

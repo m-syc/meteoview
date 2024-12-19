@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.18)
 cmake_policy(SET CMP0048 NEW)
 set(LIB_NAME
-    ContentProvider
+    ImageManager
 )
 
 # Add this to the top of your CMakeLists.txt
@@ -19,11 +19,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(SOURCES ContentProvider.hpp src/ContentProvider.cpp
-    ContentProviderFactory.hpp src/ContentProviderFactory.cpp
-    Sat24Provider.hpp src/Sat24Provider.cpp
-    ChmiProvider.hpp src/ChmiProvider.cpp
-    ModellzentraleProvider.hpp src/ModellzentraleProvider.cpp)
+set(SOURCES ImageObj.hpp src/ImageObj.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -36,7 +32,4 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 add_library(${PROJECT_NAME} ${SOURCES})
 
-find_package(fmt REQUIRED)
-find_package(CURL REQUIRED)
-target_link_libraries(${PROJECT_NAME} ConfigCore fmt::fmt CURL::libcurl ImageManager)
 target_include_directories(${PROJECT_NAME} PUBLIC ./)
