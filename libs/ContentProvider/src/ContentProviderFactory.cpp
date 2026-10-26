@@ -14,9 +14,9 @@ using json = nlohmann::json;
 
 std::vector<std::shared_ptr<ContentProvider>> ContentProviderFactory::createProviders() {
     std::vector<std::shared_ptr<ContentProvider>> providers;
-    std::string cfgPath = "./config.json";
+    const std::string cfgPath = "/workspace/meteoview/config.json";
 
-    std::ifstream f{cfgPath};
+    std::ifstream f{cfgPath,};
     json config = json::parse(f);
 
     for(const auto& [service_name, properties] : config["services"].items()) {
@@ -35,21 +35,21 @@ std::shared_ptr<ContentProvider> ContentProviderFactory::makeSat24Provier(const 
     // Config deserialized from json
     const Sat24Cfg cfg = j_cfg.get<Sat24Cfg>();
 
-    return std::shared_ptr<Sat24Provider>(new Sat24Provider{cfg});
+    return std::make_shared<Sat24Provider>(cfg);
 }
 
 std::shared_ptr<ContentProvider> ContentProviderFactory::makeChmiProvier(const json& j_cfg) {
     // Config deserialized from json
     const ChmiCfg cfg = j_cfg.get<ChmiCfg>();
 
-    return std::shared_ptr<ChmiProvider>(new ChmiProvider{cfg});
+    return std::make_shared<ChmiProvider>(cfg);
 }
 
 std::shared_ptr<ContentProvider> ContentProviderFactory::makeModellzentraleProvider(const json& j_cfg) {
     // Config deserialized from json
     ModellzentraleCfg cfg = j_cfg.get<ModellzentraleCfg>();
 
-    return std::shared_ptr<ModellzentraleProvider>(new ModellzentraleProvider{cfg});
+    return std::make_shared<ModellzentraleProvider>(cfg);
 }
 
 std::shared_ptr<ContentProvider> ContentProviderFactory::createProvider(const std::string &serviceName, const json& j_cfg) {

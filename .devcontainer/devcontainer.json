@@ -1,0 +1,23 @@
+{
+    "name": "meteoview",
+    "image": "mcr.microsoft.com/devcontainers/cpp:debian",
+
+    "features" : {
+        "ghcr.io/devcontainers/features/python": {
+            "version": "latest"
+        }
+    },
+
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev libglfw3-dev && pipx install conan && conan profile detect --force",
+    "customizations": {
+        "vscode": {
+            "extensiosn": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "twxs.cmake"
+            ]
+        }
+    },
+
+    "remoteUser": "vscode"
+}

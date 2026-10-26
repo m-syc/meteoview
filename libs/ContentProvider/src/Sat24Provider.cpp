@@ -2,15 +2,15 @@
 #include <fmt/core.h>
 
 Sat24Provider::Sat24Provider() {
-    // fmt::print("{} constructor\n", __FUNCTION__);
+    fmt::print("{} constructor\n", __FUNCTION__);
 }
 
 Sat24Provider::Sat24Provider(const Sat24Cfg &cfg) {
-    // fmt::print("{} constructor with cfg\n", __FUNCTION__);
+    fmt::print("{} constructor with cfg\n", __FUNCTION__);
 }
 
 Sat24Provider::~Sat24Provider() {
-    // fmt::print("{} destructor\n", __FUNCTION__);
+    fmt::print("{} destructor\n", __FUNCTION__);
 }
 
 // std::shared_ptr<Sat24Provider> Sat24Provider::instance(std::shared_ptr<BasicCfg> cfg) {
