@@ -1,0 +1,8 @@
+{
+    "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}",
+    "cmake.useCMakePresets": "never",
+    "cmake.configureArgs": [
+        "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/build/${buildType}/conan_toolchain.cmake",
+        "-DCMAKE_BUILD_TYPE=${buildType}"
+    ]
+}
