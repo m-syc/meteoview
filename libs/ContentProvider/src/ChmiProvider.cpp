@@ -8,7 +8,7 @@
 namespace fs = std::filesystem;
 
 static const std::string BASE_URL = "https://www.chmi.cz/files/portal/docs/meteo/sat/msg_hrit/img-msg{}-1160x800-{}/msg{}-1160x800.{}.{}.0.jpg";
-static const fs::path MEDIA_PATH = "./media/Chmi/";
+static const fs::path MEDIA_PATH = fs::path(PROJECT_ROOT_DIR) / "media" / "Chmi";
 static const std::map<ChmiCfg::Product, std::string> mapProductNames = {
     {ChmiCfg::PROD_IR, "ir108"},
     {ChmiCfg::PROD_IR_BT, "ir108BT"},

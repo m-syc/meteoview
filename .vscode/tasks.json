@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Conan: Install Debug",
+      "type": "shell",
+      "command": "conan install . -of=build/Debug -s build_type=Debug --build=missing",
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Conan: Install Release",
+      "type": "shell",
+      "command": "conan install . -of=build/Release -s build_type=Release --build=missing",
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

@@ -36,6 +36,9 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 add_library(${PROJECT_NAME} ${SOURCES})
 
+# CMAKE_SOURCE_DIR is the top-level project root, not this library's directory
+target_compile_definitions(${PROJECT_NAME} PRIVATE PROJECT_ROOT_DIR="${CMAKE_SOURCE_DIR}")
+
 find_package(fmt REQUIRED)
 find_package(CURL REQUIRED)
 target_link_libraries(${PROJECT_NAME} ConfigCore fmt::fmt CURL::libcurl ImageManager)

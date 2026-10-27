@@ -3,10 +3,12 @@
 #include "ChmiProvider.hpp"
 #include "ModellzentraleProvider.hpp"
 #include <iostream>
+#include <filesystem>
 #include <fstream>
 #include <map>
 #include <memory>
 #include <functional>
+#include <stdexcept>
 #include <fmt/core.h>
 #include <nlohmann/json.hpp>
 
@@ -14,9 +16,12 @@ using json = nlohmann::json;
 
 std::vector<std::shared_ptr<ContentProvider>> ContentProviderFactory::createProviders() {
     std::vector<std::shared_ptr<ContentProvider>> providers;
-    const std::string cfgPath = "/workspace/meteoview/config.json";
+    const std::string cfgPath = (std::filesystem::path(PROJECT_ROOT_DIR) / "config.json").string();
 
-    std::ifstream f{cfgPath,};
+    std::ifstream f{cfgPath};
+    if(!f.is_open()) {
+        throw std::runtime_error("Cannot open config file: " + cfgPath);
+    }
     json config = json::parse(f);
 
     for(const auto& [service_name, properties] : config["services"].items()) {

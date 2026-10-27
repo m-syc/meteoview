@@ -950,6 +950,7 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+CMakeUserPresets.json
 
 ##### C++
 # Prerequisites
@@ -1057,41 +1058,4 @@ I have some suggestions to make this even better!
 *.dis
 # C/C++ binary extension file
 *.bin
-@Yousha
-Author
-Yousha commented on Feb 14, 2022
-@LOCNNIL Thanks, added.
-
-@lnikon
-lnikon commented on Aug 20, 2022
-Wow, this is really great list, thank you so much!
-
-@SharifAkram
-SharifAkram commented on Jul 30
-Thank you!!
-
-@lihaohong6
-lihaohong6 commented 2 days ago
-Perhaps Bazel's build files can also be added just like cmake-build-*/?
-
-bazel-*/
-@m-syc
-
-Leave a comment
-Nie wybrano pliku
-Attach files by dragging & dropping, selecting or pasting them.
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-CMakeUserPresets.json
+.devcontainer/devcontainer-lock.json
