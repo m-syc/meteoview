@@ -1,5 +1,4 @@
-#ifndef _SAT24_CFG
-#define _SAT24_CFG
+#pragma once
 
 #include "BasicCfg.hpp"
 
@@ -22,5 +21,3 @@ public:
 private:
     std::vector<Product> products;
 };
-
-#endif /* _SAT24_CFG */

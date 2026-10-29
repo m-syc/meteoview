@@ -1,6 +1,8 @@
 #include "Sat24Provider.hpp"
 #include <fmt/core.h>
 
+namespace Provider {
+
 Sat24Provider::Sat24Provider() {
     fmt::print("{} constructor\n", __FUNCTION__);
 }
@@ -22,5 +24,7 @@ Sat24Provider::~Sat24Provider() {
 
 void Sat24Provider::fetchContent() {
     fmt::print("Sat24Provider fetchContent\n", __FUNCTION__);
+
+}
 
 }

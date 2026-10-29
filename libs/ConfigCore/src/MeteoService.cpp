@@ -25,7 +25,7 @@ MeteoService operator++(MeteoService type, int) {
     return ++type;
 }
 
-const MeteoService operator*(MeteoService type) {
+MeteoService operator*(MeteoService type) {
     return type;
 }
 

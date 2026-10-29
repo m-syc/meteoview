@@ -1,6 +1,8 @@
 #include "ModellzentraleProvider.hpp"
 #include <fmt/core.h>
 
+namespace Provider {
+
 ModellzentraleProvider::ModellzentraleProvider() {
     // fmt::print("{} constructor\n", __FUNCTION__);
 }
@@ -15,5 +17,7 @@ ModellzentraleProvider::~ModellzentraleProvider() {
 
 void ModellzentraleProvider::fetchContent() noexcept {
     fmt::print("ModellzentraleProvider fetchContent\n", __FUNCTION__);
+
+}
 
 }

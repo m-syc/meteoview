@@ -1,5 +1,4 @@
-#ifndef _CHMI_CFG
-#define _CHMI_CFG
+#pragma once
 
 #include "BasicCfg.hpp"
 
@@ -43,5 +42,3 @@ public:
 private:
     void removeInvalidates(std::vector<ChmiCfg::Product> &products);
 };
-
-#endif /* _CHMI_CFG */

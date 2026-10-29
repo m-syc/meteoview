@@ -1,10 +1,11 @@
-#ifndef _SAT24_PROVIDER
-#define _SAT24_PROVIDER
+#pragma once
 
 #include <memory>
 #include "ContentProvider.hpp"
 #include <nlohmann/json.hpp>
 #include "Sat24Cfg.hpp"
+
+namespace Provider {
 
 class Sat24Provider : public ContentProvider {
 public:
@@ -17,4 +18,4 @@ public:
 private:
 };
 
-#endif /* _SAT24_PROVIDER */
+}

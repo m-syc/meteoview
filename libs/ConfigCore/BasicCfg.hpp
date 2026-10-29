@@ -1,9 +1,7 @@
-#ifndef _BASIC_CFG
-#define _BASIC_CFG
+#pragma once
 
 #include "fmt/core.h"
 #include <nlohmann/json.hpp>
-
 
 class BasicCfg {
 public:
@@ -15,5 +13,3 @@ public:
     unsigned int imgNum;
     bool doProcess;
 };
-
-#endif /* _BASIC_CFG */

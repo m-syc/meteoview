@@ -4,9 +4,9 @@
 
 int main()
 {
-	auto providers = ContentProviderFactory::createProviders();
+	auto providers = Provider::ContentProviderFactory::createProviders();
 
-	for(auto provider : providers) {
+	for(auto& provider : providers) {
 		provider->fetchContent();
 	}
 

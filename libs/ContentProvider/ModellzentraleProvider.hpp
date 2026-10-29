@@ -1,9 +1,10 @@
-#ifndef _MODELLZENTRALE_PROVIDER
-#define _MODELLZENTRALE_PROVIDER
+#pragma once
 
 #include <memory>
 #include "ContentProvider.hpp"
 #include "ModellzentraleCfg.hpp"
+
+namespace Provider {
 
 class ModellzentraleProvider : public ContentProvider {
 public:
@@ -16,4 +17,4 @@ public:
 private:
 };
 
-#endif /* _MODELLZENTRALE_PROVIDER */
+}

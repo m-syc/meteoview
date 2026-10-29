@@ -1,5 +1,4 @@
-#ifndef _MODELLZENTRALE_CFG
-#define _MODELLZENTRALE_CFG
+#pragma once
 
 #include "BasicCfg.hpp"
 
@@ -21,5 +20,3 @@ public:
 private:
     std::vector<Altitude> altitudes;
 };
-
-#endif /* _MODELLZENTRALE_CFG */

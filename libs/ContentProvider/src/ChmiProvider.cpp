@@ -6,6 +6,7 @@
 #include <fstream>
 
 namespace fs = std::filesystem;
+namespace Provider {
 
 static const std::string BASE_URL = "https://www.chmi.cz/files/portal/docs/meteo/sat/msg_hrit/img-msg{}-1160x800-{}/msg{}-1160x800.{}.{}.0.jpg";
 static const fs::path MEDIA_PATH = fs::path(PROJECT_ROOT_DIR) / "media" / "Chmi";
@@ -66,4 +67,6 @@ void ChmiProvider::fetchContent() {
         }
     }
     // return
+}
+
 }

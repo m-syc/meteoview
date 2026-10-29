@@ -1,10 +1,11 @@
-#ifndef _CONTENT_PROVIDER
-#define _CONTENT_PROVIDER
+#pragma once
 
 #include "BasicCfg.hpp"
 #include <filesystem>
 #include <deque>
 #include "ImageObj.hpp"
+
+// namespace Provider {
 
 class ContentProvider {
     friend class ContentProviderFactory;
@@ -22,4 +23,4 @@ protected:
     bool downloadImage(const std::filesystem::path &imgPath, const std::string &url);
 };
 
-#endif /* _CONTENT_PROVIDER */
+// }

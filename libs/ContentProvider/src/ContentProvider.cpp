@@ -34,7 +34,7 @@ std::deque<std::string> ContentProvider::generateTimestamps(unsigned imgNum, uns
     char timepoint[MAX_TIMESTAMP_LEN];
 
     t_c -= (75 * MIN2SEC); // todo replace with localle offset
-    for(auto n = 0; n < imgNum; ++n) {
+    for(unsigned n = 0; n < imgNum; ++n) {
         t_c -= td * MIN2SEC;
         std::tm *tm = std::localtime(&t_c);
         tm->tm_min -= tm->tm_min % td;
@@ -50,7 +50,6 @@ std::deque<std::string> ContentProvider::generateTimestamps(unsigned imgNum, uns
 bool ContentProvider::downloadImage(const fs::path &imgPath, const std::string &url) {
     CURL *curl;
     CURLcode res;
-    // "/" operator is overloaded in fs::path to join paths
     std::ofstream ofs(imgPath, std::ios::binary);
 
     if (!ofs.is_open()) {

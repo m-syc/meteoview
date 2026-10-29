@@ -13,9 +13,10 @@
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
+namespace Provider {
 
-std::vector<std::shared_ptr<ContentProvider>> ContentProviderFactory::createProviders() {
-    std::vector<std::shared_ptr<ContentProvider>> providers;
+std::vector<std::unique_ptr<ContentProvider>> ContentProviderFactory::createProviders() {
+    std::vector<std::unique_ptr<ContentProvider>> providers;
     const std::string cfgPath = (std::filesystem::path(PROJECT_ROOT_DIR) / "config.json").string();
 
     std::ifstream f{cfgPath};
@@ -28,7 +29,7 @@ std::vector<std::shared_ptr<ContentProvider>> ContentProviderFactory::createProv
         if(properties["process"]) {
             auto provider = ContentProviderFactory::createProvider(service_name, properties);
             if(provider != nullptr) {
-                providers.push_back(provider);
+                providers.emplace_back(std::move(provider));
             }
         }
     }
@@ -36,30 +37,27 @@ std::vector<std::shared_ptr<ContentProvider>> ContentProviderFactory::createProv
     return providers;
 }
 
-std::shared_ptr<ContentProvider> ContentProviderFactory::makeSat24Provier(const json& j_cfg) {
-    // Config deserialized from json
+std::unique_ptr<ContentProvider> ContentProviderFactory::makeSat24Provier(const json& j_cfg) {
     const Sat24Cfg cfg = j_cfg.get<Sat24Cfg>();
 
-    return std::make_shared<Sat24Provider>(cfg);
+    return std::make_unique<Sat24Provider>(cfg);
 }
 
-std::shared_ptr<ContentProvider> ContentProviderFactory::makeChmiProvier(const json& j_cfg) {
-    // Config deserialized from json
+std::unique_ptr<ContentProvider> ContentProviderFactory::makeChmiProvier(const json& j_cfg) {
     const ChmiCfg cfg = j_cfg.get<ChmiCfg>();
 
-    return std::make_shared<ChmiProvider>(cfg);
+    return std::make_unique<ChmiProvider>(cfg);
 }
 
-std::shared_ptr<ContentProvider> ContentProviderFactory::makeModellzentraleProvider(const json& j_cfg) {
-    // Config deserialized from json
+std::unique_ptr<ContentProvider> ContentProviderFactory::makeModellzentraleProvider(const json& j_cfg) {
     ModellzentraleCfg cfg = j_cfg.get<ModellzentraleCfg>();
 
-    return std::make_shared<ModellzentraleProvider>(cfg);
+    return std::make_unique<ModellzentraleProvider>(cfg);
 }
 
-std::shared_ptr<ContentProvider> ContentProviderFactory::createProvider(const std::string &serviceName, const json& j_cfg) {
+std::unique_ptr<ContentProvider> ContentProviderFactory::createProvider(const std::string &serviceName, const json& j_cfg) {
     // LUT that maps meteorological service names to their respective service implementations
-    using ServiceRegistry = std::map<std::string, std::function<std::shared_ptr<ContentProvider>(const nlohmann::json& cfg)>>;
+    using ServiceRegistry = std::map<std::string, std::function<std::unique_ptr<ContentProvider>(const nlohmann::json& cfg)>>;
 
     static const ServiceRegistry serviceMap = {
         {"sat24", &ContentProviderFactory::makeSat24Provier},
@@ -67,7 +65,7 @@ std::shared_ptr<ContentProvider> ContentProviderFactory::createProvider(const st
         {"Modellzentrale", &ContentProviderFactory::makeModellzentraleProvider},
     };
 
-    auto creator = serviceMap.find(serviceName);
+    const auto& creator = serviceMap.find(serviceName);
     if(creator != serviceMap.end()) {
         return creator->second(j_cfg);
     }
@@ -75,4 +73,6 @@ std::shared_ptr<ContentProvider> ContentProviderFactory::createProvider(const st
         fmt::print("ERROR: cannot find key {}", serviceName);
         return nullptr;
     }
+}
+
 }

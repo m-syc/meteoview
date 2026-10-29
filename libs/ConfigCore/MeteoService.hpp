@@ -1,5 +1,4 @@
-#ifndef _METEO_SERVICE
-#define _METEO_SERVICE
+#pragma once
 
 #include <type_traits>
 #include <map>
@@ -18,8 +17,6 @@ std::map<MeteoService, std::string_view> MeteoServiceName();
 
 MeteoService& operator++(MeteoService &type);
 MeteoService operator++(MeteoService type, int);
-const MeteoService operator*(MeteoService type);
+MeteoService operator*(MeteoService type);
 MeteoService begin(MeteoService type);
 MeteoService end(MeteoService type);
-
-#endif /* _METEO_SERVICE */

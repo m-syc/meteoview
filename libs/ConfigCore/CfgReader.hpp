@@ -1,5 +1,4 @@
-#ifndef _CFG_REDER
-#define _CFG_REDER
+#pragma once
 
 #include <filesystem>
 #include <vector>
@@ -17,5 +16,3 @@ private:
     std::filesystem::path cfgPath;
     std::map<MeteoService, std::shared_ptr<BasicCfg>> serviceCfgs;
 };
-
-#endif /* _CFG_REDER */
